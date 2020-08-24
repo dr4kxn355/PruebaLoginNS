@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/08/2020 04:53:52 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="dao.Persona" table="PERSONA">
+        <id name="id" type="int">
+            <column name="ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="50" not-null="true" />
+        </property>
+        <property name="edad" type="int">
+            <column name="EDAD" precision="6" scale="0" not-null="true" />
+        </property>
+        <property name="estadoCivil" type="string">
+            <column name="ESTADO_CIVIL" length="15" not-null="true" />
+        </property>
+        <set name="usuarios" table="USUARIO" inverse="true" lazy="false" fetch="select" cascade="all">
+            <key>
+                <column name="FK_ID_PERSONA" precision="6" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="dao.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>
